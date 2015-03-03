@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo plugin phonegap</title>
+</head>
+<body>
+   <h1>Información del telefono</h1>
+   
+   <h2>IMEI: <span></span></h2>
+   <h2>IMSI: <span id="imsi"></span></h2>
+   <h2>Teléfono: <span id="tel"></span></h2>
+   
+   <script src="cordova.js"></script>
+   <script>
+       document.addEventListener("deviceready", function(){
+         var spanIMEI = document.querySelector('h2>span');      
+         var spanIMSI = document.querySelector('#imsi');        
+         var spanTel = document.querySelector('#tel');           
+         window.telefono.obtenerInformacion(function(info){
+             spanIMEI.innerHTML = info.imei;
+             spanIMSI.innerHTML = info.imsi;
+             spanTel.innerHTML = info.telefono;
+         },
+         function(error){
+             spanIMEI.innerHTML = error;
+         });
+       });
+   </script>
+    
+</body>
+</html>
